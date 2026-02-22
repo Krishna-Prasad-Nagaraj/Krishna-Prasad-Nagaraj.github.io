@@ -1,0 +1,965 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!doctype html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;CIPP Training Quote Calculator | Dr. Kp&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="description" content="Live scoping and quote calculator for custom procurement training content + onsite delivery." /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>:root{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--bg:#0b1220;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--card:#111a2d;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--muted:#98a2b3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--text:#e6edf7;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--accent:#4da3ff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--accent2:#22c55e;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--warn:#f59e0b;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--danger:#ef4444;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--border:#22304a;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--chip:#18233a;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>*{box-sizing:border-box}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:linear-gradient(180deg,#08101d,#0b1220);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:var(--text);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height:1.35;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.wrap{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width:1200px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:0 auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>h1{font-size:1.4rem; margin:0 0 6px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.sub{color:var(--muted); margin-bottom:18px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.grid{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:grid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: 1.2fr .8fr;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>@media (max-width: 980px){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.grid{grid-template-columns:1fr}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.card{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:rgba(17,26,45,.9);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius:16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow:0 10px 30px rgba(0,0,0,.25);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.section{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius:14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom:12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:rgba(10,16,28,.35);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.section h2{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:0 0 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:#dbeafe;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.row{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:grid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: 1.1fr 1fr;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>@media (max-width: 640px){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.row{grid-template-columns:1fr}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>label{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:#d6deeb;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:.93rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.hint{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:var(--muted);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:.78rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top:3px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>input[type="number"], input[type="text"], select{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width:100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:#0d1526;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:var(--text);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:10px 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>outline:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>input[type="checkbox"]{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: scale(1.15);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>accent-color: var(--accent);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.checkline{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:8px 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:#0d1526;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.checks{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:grid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns:1fr 1fr;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>@media (max-width: 640px){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.checks{grid-template-columns:1fr}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.results h3{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:0 0 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:#dbeafe;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.big{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:1.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight:700;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:6px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.range{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:#bfdbfe;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight:600;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.pill{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:inline-flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:var(--chip);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius:999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:6px 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:.84rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:4px 6px 0 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:#dbeafe;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.band-lite{border-color:#2f6b46;color:#bbf7d0}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.band-standard{border-color:#3667b4;color:#bfdbfe}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.band-premium{border-color:#8a5a17;color:#fde68a}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.breakdown{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-top:1px dashed var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-top:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.line{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:7px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:.92rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.line .k{color:var(--muted)}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.line.total{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight:700;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-top:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-top:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.tag{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:inline-block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:3px 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:.75rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:#0d1526;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:var(--muted);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top:6px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.score{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:.9rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:#dbeafe;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.actions{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>flex-wrap:wrap;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top:12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>button{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:10px 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor:pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight:600;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:#fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:#1d4ed8;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>button.secondary{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:#334155;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>button.ghost{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:transparent;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:var(--text);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>textarea{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width:100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>min-height:180px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:#0d1526;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:var(--text);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius:12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>resize:vertical;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.footer-note{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:var(--muted);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:.8rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.mini{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:.78rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:var(--muted);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.inline{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex; gap:8px; align-items:center; flex-wrap:wrap;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid var(--border);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:#0d1526;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:4px 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:.75rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:#dbeafe;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="wrap"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h1&gt;CIPP Training Quote Calculator&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="sub"&gt;Custom content + onsite delivery scoping calculator (ballpark estimator)&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="grid"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- LEFT: Inputs --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h2&gt;1) Program Basics&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="durationDays"&gt;Duration (days)&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Default 2-day onsite program&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;&lt;input id="durationDays" type="number" min="1" max="10" value="2" /&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="hoursTotal"&gt;Total hours&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Used only for summary; calculator primarily prices by day + scope&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;&lt;input id="hoursTotal" type="number" min="1" max="80" value="16" /&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="locationType"&gt;Delivery location&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Bangalore onsite is base assumption&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="locationType"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="blr_onsite" selected&gt;Bangalore Onsite&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="india_onsite"&gt;Outside Bangalore (India Onsite)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="virtual"&gt;Virtual&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="audienceCount"&gt;Participant count&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Larger groups can increase facilitation effort&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;&lt;input id="audienceCount" type="number" min="1" max="500" value="20" /&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="batchType"&gt;Batch model&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Multiple batches reuse content but add delivery fee&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="batchType"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="single" selected&gt;Single batch&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="multiple"&gt;Multiple batches (same content)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="numBatches"&gt;No. of batches&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Only matters if multiple batches selected&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;&lt;input id="numBatches" type="number" min="1" max="20" value="1" /&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h2&gt;2) Audience &amp; Outcome Fit&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="audienceLevel"&gt;Audience level&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Mixed and managerial audiences need more adaptation&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="audienceLevel"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="junior"&gt;Junior / Early career&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="mid" selected&gt;Mid-level practitioners&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="manager"&gt;Managers / Senior managers&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="mixed"&gt;Mixed cohort&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="industryType"&gt;Industry scope&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Mixed industry open batches require broader examples&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="industryType"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="single" selected&gt;Single industry / client&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="mixed"&gt;Mixed industries&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="programOutcome"&gt;Expected outcome&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Certification prep and practical application increase prep load&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="programOutcome"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="awareness"&gt;Awareness / overview&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="practical" selected&gt;Practical application workshop&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="cert_prep"&gt;Certification prep focus&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="advanced"&gt;Advanced strategy / practitioner depth&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h2&gt;3) Content Development Scope&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="deckBuild"&gt;Slide deck build type&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Core driver of content fee&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="deckBuild"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="adapt"&gt;Adapt existing material/template&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="custom" selected&gt;Fully custom deck from scratch&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="slideStyle"&gt;Slide style&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Premium design effort costs more than functional trainer slides&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="slideStyle"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="functional" selected&gt;Functional trainer-style&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="premium"&gt;Premium polished participant-facing&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="deliverableDepth"&gt;Deck depth&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Facilitator notes add development effort&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="deliverableDepth"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="slides_only" selected&gt;Slides only&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="slides_notes"&gt;Slides + facilitator notes&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="checks"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="clientCustomization" /&gt; Client-specific customization&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="aiProcurementUseCases" checked /&gt; AI procurement demos/use-cases&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="industryExamples" checked /&gt; Tailored industry examples&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="worksheets" /&gt; Worksheets / templates&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="caseStudies" /&gt; Case studies included&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="simulations" /&gt; Role-play / negotiation simulations&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="capstone" /&gt; Capstone / group activity design&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="assessment" /&gt; Pre/Post assessment or quiz&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h2&gt;4) Delivery Expectations&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="deliveryMode"&gt;Delivery style&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Interactive workshops require higher facilitation energy and setup&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="deliveryMode"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="lecture"&gt;Lecture style&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="hybrid" selected&gt;Hybrid (lecture + activities)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="workshop"&gt;Interactive workshop-heavy&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="checks"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="activityEveryModule" /&gt; Activities in most modules&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="participantEvaluation" /&gt; Participant evaluation during session&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="stakeholderCall" /&gt; Pre-delivery stakeholder briefing call&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="dryRun" /&gt; Dry run / rehearsal&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="postReport" /&gt; Post-training report / recommendations&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h2&gt;5) Deliverables, Rights &amp; Timeline&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="checks"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="workbook" /&gt; Participant workbook / handout&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="editablePPT" /&gt; Editable PPT handover&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="internalReuse" /&gt; Internal reuse rights&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="otherTrainersUse" /&gt; Other trainers may use my material&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="recording" /&gt; Session recording allowed&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label class="checkline"&gt;&lt;input type="checkbox" id="recordingReuse" /&gt; Recording reused for future trainings&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row" style="margin-top:10px"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="reviewRounds"&gt;Review rounds expected&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Base includes up to 2 rounds&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="reviewRounds"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="1"&gt;1 round&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="2" selected&gt;2 rounds&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="3"&gt;3 rounds&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="4"&gt;4+ rounds&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="feedbackMode"&gt;Feedback source&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Multiple reviewers usually means more revisions&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="feedbackMode"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="single" selected&gt;Single SPOC / consolidated&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="multiple"&gt;Multiple reviewers&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="timeline"&gt;Timeline urgency&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Rush turnaround adds % surcharge&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="timeline"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="normal" selected&gt;Normal (7+ working days)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="tight"&gt;Tight (4–6 working days)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="rush"&gt;Rush (1–3 working days)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h2&gt;6) Budget &amp; Commercial Inputs (Optional)&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="clientBudget"&gt;Client budget (optional, INR)&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Used only for comparison in summary&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;&lt;input id="clientBudget" type="number" min="0" step="1000" placeholder="e.g. 250000" /&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;label for="gstIncluded"&gt;Add GST in displayed total?&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;Base calculations are before tax&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;select id="gstIncluded"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="no" selected&gt;No (show + GST)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;option value="yes"&gt;Yes (include 18% GST)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- RIGHT: Results --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="card results"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Live Quote Estimate&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="mini"&gt;Base anchor assumes: 2-day Bangalore onsite + custom deck + standard customization.&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="bandPillWrap" style="margin-top:8px;"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="big" id="quoteTotal"&gt;₹0&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="range" id="quoteRange"&gt;Range: ₹0 – ₹0&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="inline"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;span class="badge" id="scoreBadge"&gt;Score: 0&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;span class="badge" id="gstBadge"&gt;Excl. GST&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;span class="badge" id="budgetCompare"&gt;Budget check: n/a&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="breakdown"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="line"&gt;&lt;span class="k"&gt;Content development&lt;/span&gt;&lt;span id="bdContent"&gt;₹0&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="line"&gt;&lt;span class="k"&gt;Delivery fee&lt;/span&gt;&lt;span id="bdDelivery"&gt;₹0&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="line"&gt;&lt;span class="k"&gt;Add-ons / scope complexity&lt;/span&gt;&lt;span id="bdAddons"&gt;₹0&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="line"&gt;&lt;span class="k"&gt;Rights / licensing&lt;/span&gt;&lt;span id="bdRights"&gt;₹0&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="line"&gt;&lt;span class="k"&gt;Timeline / process surcharge&lt;/span&gt;&lt;span id="bdTimeline"&gt;₹0&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="line"&gt;&lt;span class="k"&gt;Travel/location adjustment&lt;/span&gt;&lt;span id="bdLocation"&gt;₹0&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="line total"&gt;&lt;span&gt;Total estimate&lt;/span&gt;&lt;span id="bdTotal"&gt;₹0&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="tag" id="quoteBandTag"&gt;Band: -&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="score" id="scoreSummary"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="actions"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;button id="copySummaryBtn"&gt;Copy Summary&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;button class="secondary" id="resetBtn"&gt;Reset to Default&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;button class="ghost" id="samplePremiumBtn"&gt;Load Premium Example&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;textarea id="summaryOutput" readonly&gt;&lt;/textarea&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="footer-note"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>Ballpark estimator only. Final quote should depend on exact deliverables, revisions, rights, and payment terms.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1">(function () {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const $ = (id) =&gt; document.getElementById(id);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const ids = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>"durationDays","hoursTotal","locationType","audienceCount","batchType","numBatches",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>"audienceLevel","industryType","programOutcome",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>"deckBuild","slideStyle","deliverableDepth",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>"clientCustomization","aiProcurementUseCases","industryExamples","worksheets","caseStudies","simulations","capstone","assessment",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>"deliveryMode","activityEveryModule","participantEvaluation","stakeholderCall","dryRun","postReport",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>"workbook","editablePPT","internalReuse","otherTrainersUse","recording","recordingReuse",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>"reviewRounds","feedbackMode","timeline","clientBudget","gstIncluded"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>ids.forEach(id =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const el = $(id);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (!el) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>el.addEventListener("input", calculate);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>el.addEventListener("change", calculate);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>$("copySummaryBtn").addEventListener("click", async () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const txt = $("summaryOutput").value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>await navigator.clipboard.writeText(txt);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>$("copySummaryBtn").textContent = "Copied ✓";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>setTimeout(() =&gt; $("copySummaryBtn").textContent = "Copy Summary", 1200);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>} catch {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>$("copySummaryBtn").textContent = "Copy failed";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>setTimeout(() =&gt; $("copySummaryBtn").textContent = "Copy Summary", 1200);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>$("resetBtn").addEventListener("click", resetDefaults);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>$("samplePremiumBtn").addEventListener("click", loadPremiumExample);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function INR(n) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const rounded = Math.round(n || 0);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>return "₹" + rounded.toLocaleString("en-IN");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function num(id, fallback = 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const v = Number($(id).value);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>return Number.isFinite(v) ? v : fallback;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function checked(id) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>return !!$(id).checked;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function select(id) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>return $(id).value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function resetDefaults() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("durationDays").value = 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("hoursTotal").value = 16;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("locationType").value = "blr_onsite";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("audienceCount").value = 20;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("batchType").value = "single";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("numBatches").value = 1;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("audienceLevel").value = "mid";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("industryType").value = "single";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("programOutcome").value = "practical";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("deckBuild").value = "custom";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("slideStyle").value = "functional";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("deliverableDepth").value = "slides_only";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("clientCustomization").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("aiProcurementUseCases").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("industryExamples").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("worksheets").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("caseStudies").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("simulations").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("capstone").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("assessment").checked = false;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("deliveryMode").value = "hybrid";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("activityEveryModule").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("participantEvaluation").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("stakeholderCall").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("dryRun").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("postReport").checked = false;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("workbook").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("editablePPT").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("internalReuse").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("otherTrainersUse").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("recording").checked = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("recordingReuse").checked = false;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("reviewRounds").value = "2";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("feedbackMode").value = "single";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("timeline").value = "normal";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("clientBudget").value = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("gstIncluded").value = "no";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>calculate();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function loadPremiumExample() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>resetDefaults();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("slideStyle").value = "premium";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("deliverableDepth").value = "slides_notes";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("clientCustomization").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("worksheets").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("caseStudies").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("simulations").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("capstone").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("assessment").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("deliveryMode").value = "workshop";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("activityEveryModule").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("participantEvaluation").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("stakeholderCall").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("dryRun").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("postReport").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("workbook").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("editablePPT").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("internalReuse").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("otherTrainersUse").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("recording").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("recordingReuse").checked = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("reviewRounds").value = "4";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("feedbackMode").value = "multiple";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("timeline").value = "tight";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>calculate();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function calculate() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Base anchor (your suggested anchor)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// 2-day Bangalore onsite + custom deck + standard customization</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let content = 175000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let delivery = 150000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let addons = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let rights = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let timelineProcess = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let locationAdj = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let score = 0;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const durationDays = Math.max(1, num("durationDays", 2));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const locationType = select("locationType");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const audienceCount = Math.max(1, num("audienceCount", 20));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const batchType = select("batchType");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const numBatches = Math.max(1, num("numBatches", 1));</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Duration scaling (base assumes 2 days)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (durationDays !== 2) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// content scales less than linearly, delivery scales linearly</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const extraDays = durationDays - 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (extraDays &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>content += extraDays * 45000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>delivery += extraDays * 75000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>score += extraDays * 4;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>content += extraDays * 35000; // reduces if 1 day</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>delivery += extraDays * 75000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>score += extraDays * 3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Multi-batch handling</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (batchType === "multiple" &amp;&amp; numBatches &gt; 1) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const extraBatches = numBatches - 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// reuse same content, charge mostly delivery + small adaptation</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>delivery += extraBatches * (Math.max(50000, (150000 / 2)));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>content += extraBatches * 10000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>addons += extraBatches * 5000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>score += extraBatches * 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Audience &amp; outcome factors</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const audienceLevel = select("audienceLevel");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (audienceLevel === "manager") { content += 20000; score += 3; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (audienceLevel === "mixed") { content += 30000; addons += 10000; score += 5; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const industryType = select("industryType");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (industryType === "mixed") { content += 25000; score += 4; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const programOutcome = select("programOutcome");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (programOutcome === "awareness") { content -= 30000; score -= 3; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (programOutcome === "cert_prep") { content += 40000; score += 6; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (programOutcome === "advanced") { content += 60000; score += 8; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Content development scope</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const deckBuild = select("deckBuild");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (deckBuild === "adapt") { content -= 70000; score -= 6; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>else { score += 6; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const slideStyle = select("slideStyle");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (slideStyle === "premium") { content += 50000; score += 5; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const deliverableDepth = select("deliverableDepth");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (deliverableDepth === "slides_notes") { content += 35000; score += 4; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Checkboxes: content/features</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("clientCustomization")) { content += 40000; score += 6; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("aiProcurementUseCases")) { content += 15000; score += 2; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("industryExamples")) { content += 15000; score += 2; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("worksheets")) { addons += 30000; score += 4; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("caseStudies")) { addons += 35000; score += 5; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("simulations")) { addons += 45000; score += 6; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("capstone")) { addons += 30000; score += 4; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("assessment")) { addons += 25000; score += 3; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Delivery expectations</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const deliveryMode = select("deliveryMode");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (deliveryMode === "lecture") { delivery -= 20000; score -= 2; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (deliveryMode === "workshop") { delivery += 30000; score += 4; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("activityEveryModule")) { addons += 20000; score += 3; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("participantEvaluation")) { addons += 30000; score += 4; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("stakeholderCall")) { addons += 15000; score += 2; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("dryRun")) { addons += 20000; score += 3; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("postReport")) { addons += 30000; score += 4; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Materials / rights</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("workbook")) { addons += 35000; score += 4; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("editablePPT")) { rights += 40000; score += 5; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("internalReuse")) { rights += 90000; score += 8; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("otherTrainersUse")) { rights += 75000; score += 7; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("recording")) { rights += 25000; score += 3; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (checked("recordingReuse")) { rights += 90000; score += 8; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Reviews / feedback / timeline</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const reviewRounds = Number(select("reviewRounds"));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (reviewRounds &gt; 2) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const extraRounds = reviewRounds === 4 ? 2 : (reviewRounds - 2); // "4+" modeled as 2 extra</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>timelineProcess += extraRounds * 20000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>score += extraRounds * 3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const feedbackMode = select("feedbackMode");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (feedbackMode === "multiple") {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>timelineProcess += 20000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>score += 3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const timeline = select("timeline");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let rushMultiplier = 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (timeline === "tight") { rushMultiplier = 1.15; score += 4; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (timeline === "rush") { rushMultiplier = 1.30; score += 7; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Location adjustments</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (locationType === "india_onsite") {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>locationAdj += 25000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>score += 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>} else if (locationType === "virtual") {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>delivery -= 35000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>locationAdj -= 15000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>score -= 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Participant count scaling (light touch)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (audienceCount &gt; 25 &amp;&amp; audienceCount &lt;= 40) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>delivery += 15000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>score += 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>} else if (audienceCount &gt; 40) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>delivery += 30000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>addons += 15000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>score += 4;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Floors (avoid unrealistic negatives)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>content = Math.max(60000, content);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>delivery = Math.max(40000, delivery);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>addons = Math.max(0, addons);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>rights = Math.max(0, rights);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>timelineProcess = Math.max(0, timelineProcess);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Subtotal before rush multiplier</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let subtotal = content + delivery + addons + rights + timelineProcess + locationAdj;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let total = subtotal * rushMultiplier;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// GST</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const gstIncluded = select("gstIncluded") === "yes";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const totalWithGST = gstIncluded ? total * 1.18 : total;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Quote banding</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let band = "Standard";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let bandClass = "band-standard";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (total &lt; 240000) { band = "Lite"; bandClass = "band-lite"; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (total &gt;= 400000) { band = "Premium"; bandClass = "band-premium"; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Display range (±12% typical estimation spread)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const low = totalWithGST * 0.88;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const high = totalWithGST * 1.12;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Budget comparison</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const clientBudget = num("clientBudget", 0);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let budgetCompare = "Budget check: n/a";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (clientBudget &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (clientBudget &gt;= total) budgetCompare = "Budget check: Within / possible";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>else if (clientBudget &gt;= total * 0.8) budgetCompare = "Budget check: Tight (scope options needed)";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>else budgetCompare = "Budget check: Low vs scope";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// UI updates</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("quoteTotal").textContent = INR(totalWithGST);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("quoteRange").textContent = `Range: ${INR(low)} – ${INR(high)}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("bdContent").textContent = INR(content);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("bdDelivery").textContent = INR(delivery);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("bdAddons").textContent = INR(addons);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("bdRights").textContent = INR(rights);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("bdTimeline").textContent = INR((subtotal * (rushMultiplier - 1)) + timelineProcess);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("bdLocation").textContent = INR(locationAdj);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("bdTotal").textContent = INR(totalWithGST);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("quoteBandTag").textContent = `Band: ${band}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("scoreBadge").textContent = `Score: ${Math.max(0, Math.round(score))}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("gstBadge").textContent = gstIncluded ? "Incl. GST (18%)" : "Excl. GST";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("budgetCompare").textContent = budgetCompare;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("bandPillWrap").innerHTML = `&lt;span class="pill ${bandClass}"&gt;${band} Quote Band&lt;/span&gt;`;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const scoreText =</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>band === "Lite"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>? "Lower-complexity scope: likely adapted content / fewer add-ons / limited rights."</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>: band === "Standard"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>? "Balanced scope: custom deck + delivery with moderate customization and standard rights."</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>: "High-complexity scope: customization, add-ons, licensing/reuse, and/or timeline pressure.";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("scoreSummary").textContent = scoreText;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Summary text for copy</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const summary = buildSummary({</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>total: totalWithGST,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>low,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>high,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>band,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gstIncluded,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>content, delivery, addons, rights,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>timelineCharge: (subtotal * (rushMultiplier - 1)) + timelineProcess,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>locationAdj,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>score: Math.max(0, Math.round(score)),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>clientBudget,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>budgetCompare</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>$("summaryOutput").value = summary;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function buildSummary(data) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const lines = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const durationDays = num("durationDays", 2);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const hoursTotal = num("hoursTotal", 16);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const locationType = select("locationType");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const batchType = select("batchType");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const numBatches = num("numBatches", 1);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const locationLabel = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>blr_onsite: "Bangalore onsite",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>india_onsite: "Outside Bangalore (India onsite)",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>virtual: "Virtual"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}[locationType] || locationType;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`CIPP Training Ballpark Quote (${data.band} band)`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`----------------------------------------`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`Estimated total: ${INR(data.total)} ${data.gstIncluded ? "(incl. GST)" : "(+ GST)"}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`Range: ${INR(data.low)} – ${INR(data.high)}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`Complexity score: ${data.score}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(``);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`Scope snapshot:`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Duration: ${durationDays} day(s) / ${hoursTotal} hours`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Delivery: ${locationLabel}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Batching: ${batchType === "multiple" ? `${numBatches} batches` : "Single batch"}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Audience level: ${$("audienceLevel").options[$("audienceLevel").selectedIndex].text}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Outcome focus: ${$("programOutcome").options[$("programOutcome").selectedIndex].text}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Deck: ${$("deckBuild").options[$("deckBuild").selectedIndex].text}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Slide style: ${$("slideStyle").options[$("slideStyle").selectedIndex].text}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Deliverable depth: ${$("deliverableDepth").options[$("deliverableDepth").selectedIndex].text}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(``);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`Breakup (approx):`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Content development: ${INR(data.content)}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Delivery fee: ${INR(data.delivery)}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Add-ons / complexity: ${INR(data.addons)}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Rights / licensing: ${INR(data.rights)}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Timeline / process surcharge: ${INR(data.timelineCharge)}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`- Location adjustment: ${INR(data.locationAdj)}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(``);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (data.clientBudget &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>lines.push(`Client budget input: ${INR(data.clientBudget)}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>lines.push(`${data.budgetCompare}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>lines.push(``);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>lines.push(`Recommended next step: Confirm deliverables, rights (editable/reuse/recording), review rounds, and timeline before final quote.`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>return lines.join("\n");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>calculate();</span></p>
+<p class="p1"><span class="s1">})();</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
