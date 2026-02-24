@@ -1,11 +1,18 @@
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dr. Krishnaprasad Nagaraj | Wireframe</title>
-  <meta name="description" content="Personal site wireframe for Dr. Kp" />
+  <title>Dr. Krishnaprasad Nagaraj | Leadership Mentor, Author, Storyteller</title>
+  <meta name="description" content="Official personal site of Dr. Krishnaprasad Nagaraj (Dr. Kp) — leadership mentor, author of The Leadership Feed, storyteller, and founder building practical leadership and growth systems." />
+  <meta name="theme-color" content="#0b0f17" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dr. Krishnaprasad Nagaraj" />
+  <meta property="og:description" content="Leadership Mentor • Author • Storyteller • Builder" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://krishnaprasadnagaraj.com/Krishna-Prasad-Nagaraj-Banner.png" />
+
   <style>
     :root{
       --bg:#0b0f17;
@@ -20,22 +27,87 @@
       --shadow:0 20px 60px rgba(0,0,0,.45);
       --max:1100px;
     }
-    *{box-sizing:border-box}
+
+    *{ box-sizing:border-box; }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
         radial-gradient(1200px 700px at 20% 10%, rgba(96,165,250,.18), transparent 60%),
         radial-gradient(900px 600px at 80% 20%, rgba(52,211,153,.14), transparent 55%),
         var(--bg);
       color:var(--ink);
+      line-height:1.45;
     }
+
+    img{
+      max-width:100%;
+      height:auto;
+      display:block;
+    }
+
     .wrap{
       width:min(var(--max), calc(100% - 28px));
       margin:0 auto;
     }
 
-    /* Generic wireframe styles */
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .section{
+      margin:18px 0;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:20px;
+      letter-spacing:-0.02em;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:0 0 0 5px rgba(96,165,250,.14);
+    }
+
     .wire{
       border:2px dashed var(--line);
       border-radius:12px;
@@ -49,58 +121,17 @@
       min-height:64px;
       font-size:14px;
     }
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-    .section{
-      margin:18px 0;
-    }
-    .section-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:10px;
-    }
-    .section-head h2{
-      margin:0;
-      font-size:20px;
-      letter-spacing:-0.02em;
-    }
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:12px;
-    }
-    .dot{
-      width:8px;height:8px;border-radius:50%;
-      background:linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow:0 0 0 5px rgba(96,165,250,.14);
-    }
 
-    /* Header/Nav (simple) */
+    /* Header / Nav */
     .topbar{
       position:sticky;
       top:0;
-      z-index:5;
+      z-index:10;
       background:rgba(11,15,23,0.86);
       backdrop-filter:blur(8px);
       border-bottom:1px solid var(--line);
     }
+
     .topbar-inner{
       padding:12px 0;
       display:flex;
@@ -108,14 +139,18 @@
       justify-content:space-between;
       gap:12px;
     }
+
     .brand{
       font-weight:700;
+      letter-spacing:-0.01em;
     }
+
     .nav{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
     }
+
     .nav a{
       text-decoration:none;
       color:var(--muted);
@@ -124,17 +159,21 @@
       border-radius:10px;
       font-size:13px;
       background:rgba(255,255,255,.03);
+      transition:all .18s ease;
     }
+
     .nav a:hover{
       color:var(--ink);
       background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
     }
 
-    /* 1) Banner + Profile (social style) */
+    /* Hero */
     .hero{
       margin-top:14px;
       overflow:hidden;
     }
+
     .banner{
       height:240px;
       border-bottom:1px solid var(--line);
@@ -148,18 +187,17 @@
           rgba(255,255,255,.01) 10px,
           rgba(255,255,255,.01) 20px
         );
+      background-color:#132033;
       position:relative;
       padding:14px;
+      overflow:hidden;
     }
-    .banner .wire{
-      height:100%;
-      min-height:0;
-      background:rgba(15,23,42,.35);
-    }
+
     .banner-img{
       width:100%;
       height:100%;
       object-fit:cover;
+      object-position:center;
       border-radius:12px;
       display:block;
     }
@@ -168,29 +206,29 @@
       padding:18px;
       position:relative;
     }
+
     .hero-grid{
       display:grid;
       grid-template-columns:140px 1fr auto;
       gap:16px;
       align-items:start;
     }
+
     .profile-circle{
-      width:140px;height:140px;border-radius:50%;
+      width:140px;
+      height:140px;
+      border-radius:50%;
       border:5px solid rgba(255,255,255,.12);
-      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+      box-shadow:0 8px 20px rgba(0,0,0,.28);
       background:var(--card);
       margin-top:-74px;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
+      background-color:#0f172a;
     }
-    .profile-circle .wire{
-      width:100%;height:100%;min-height:0;
-      border-radius:50%;
-      border:none;
-      background:linear-gradient(180deg, rgba(96,165,250,.2), rgba(52,211,153,.12));
-    }
+
     .profile-img{
       width:100%;
       height:100%;
@@ -198,21 +236,32 @@
       display:block;
       border-radius:50%;
     }
+
     .identity h1{
       margin:0;
       font-size:28px;
       letter-spacing:-0.02em;
+      line-height:1.1;
     }
+
     .identity p{
       margin:6px 0 0;
       color:var(--muted);
     }
+
+    .identity .intro{
+      font-size:13px;
+      line-height:1.5;
+      max-width:62ch;
+    }
+
     .hero-actions{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
+
     .btn{
       border:1px solid var(--line);
       background:rgba(255,255,255,.03);
@@ -222,54 +271,69 @@
       color:var(--ink);
       text-decoration:none;
       white-space:nowrap;
+      transition:all .18s ease;
     }
+
+    .btn:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
+    }
+
     .btn.primary{
       background:linear-gradient(135deg, var(--accent), var(--accent2));
       border-color:transparent;
       color:#071018;
+      font-weight:600;
     }
 
-    /* Content layout mix */
+    .btn.primary:hover{
+      filter:brightness(1.03);
+    }
+
+    /* Layout */
     .main-grid{
       display:grid;
-      grid-template-columns: 1.45fr 0.95fr;
+      grid-template-columns:1.45fr 0.95fr;
       gap:16px;
       align-items:start;
     }
+
     .stack > .card{
       margin-bottom:16px;
     }
 
-    /* 2) Leadership Feed */
-    .leader-card{
-      padding:16px;
-    }
+    /* Leadership Feed */
+    .leader-card{ padding:16px; }
+
     .leader-layout{
       display:grid;
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns:1.1fr 1fr;
       gap:14px;
     }
+
     .book-panel{
       padding:14px;
       border:1px solid var(--line);
       border-radius:14px;
       background:var(--soft);
     }
+
     .book-top{
       display:grid;
       grid-template-columns:88px 1fr;
       gap:12px;
       align-items:start;
     }
+
     .book-cover{
       width:88px;
       height:116px;
       border-radius:10px;
-      border:2px dashed var(--line);
+      border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      display:flex;align-items:center;justify-content:center;
-      color:var(--muted); font-size:12px; text-align:center; padding:8px;
+      overflow:hidden;
     }
+
     .book-cover img{
       width:100%;
       height:100%;
@@ -277,8 +341,18 @@
       border-radius:8px;
       display:block;
     }
-    .book-meta h3{margin:0 0 6px;font-size:17px;}
-    .book-meta p{margin:0;color:var(--muted);font-size:13px;}
+
+    .book-meta h3{
+      margin:0 0 6px;
+      font-size:17px;
+    }
+
+    .book-meta p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
     .book-link{
       margin-top:10px;
       padding:10px 12px;
@@ -289,24 +363,44 @@
       display:inline-block;
       color:var(--ink);
       font-size:13px;
+      transition:all .18s ease;
+    }
+
+    .book-link:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
     }
 
     .media-stack{
       display:grid;
       gap:12px;
     }
+
     .mini-card{
       border:1px solid var(--line);
       border-radius:14px;
       padding:12px;
       background:rgba(255,255,255,.03);
     }
-    .mini-card h4{margin:0;font-size:15px}
-    .mini-card p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    .mini-card h4{
+      margin:0;
+      font-size:15px;
+    }
+
+    .mini-card p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
     .link-row{
       margin-top:8px;
-      display:flex; gap:8px; flex-wrap:wrap;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
     }
+
     .link-chip{
       display:inline-block;
       font-size:12px;
@@ -316,15 +410,24 @@
       padding:6px 8px;
       border-radius:999px;
       background:rgba(255,255,255,.03);
+      transition:all .18s ease;
     }
 
-    /* 3) Academic */
+    .link-chip:hover{
+      color:var(--ink);
+      background:rgba(255,255,255,.06);
+      border-style:solid;
+    }
+
+    /* Academic */
     .academic-card{ padding:16px; }
+
     .academic-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:12px;
     }
+
     .tile{
       border:1px solid var(--line);
       border-radius:14px;
@@ -335,8 +438,18 @@
       flex-direction:column;
       justify-content:space-between;
     }
-    .tile h4{ margin:0; font-size:15px; }
-    .tile p{ margin:6px 0 0; color:var(--muted); font-size:13px; }
+
+    .tile h4{
+      margin:0;
+      font-size:15px;
+    }
+
+    .tile p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
     .tile a{
       margin-top:10px;
       text-decoration:none;
@@ -344,33 +457,50 @@
       font-size:13px;
       font-weight:600;
     }
+
     .wide-tile{
       grid-column:1 / -1;
       background:rgba(255,255,255,.04);
     }
 
-    /* 4) Skill Bridge */
+    /* Skill Bridge */
     .skillbridge-card{ padding:16px; }
+
     .sb-layout{
       display:grid;
-      grid-template-columns: 1fr 0.95fr;
+      grid-template-columns:1fr 0.95fr;
       gap:12px;
     }
+
     .sb-block{
       border:1px solid var(--line);
       border-radius:14px;
       padding:12px;
       background:rgba(255,255,255,.03);
     }
-    .sb-block h4{margin:0;font-size:15px}
-    .sb-block p{margin:8px 0 0;color:var(--muted);font-size:13px}
+
+    .sb-block h4{
+      margin:0;
+      font-size:15px;
+    }
+
+    .sb-block p{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
     .bullet-list{
       margin:8px 0 0;
       padding-left:18px;
       color:var(--muted);
       font-size:13px;
     }
-    .bullet-list li{ margin:5px 0; }
+
+    .bullet-list li{
+      margin:5px 0;
+    }
+
     .archive-feature{
       margin-top:12px;
       border:1px solid var(--line);
@@ -382,45 +512,73 @@
       gap:12px;
       align-items:start;
     }
+
     .archive-media{
       min-height:126px;
-      border:2px dashed var(--line);
+      border:1px solid var(--line);
       border-radius:12px;
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      color:var(--muted);
+      overflow:hidden;
       display:flex;
       align-items:center;
       justify-content:center;
-      text-align:center;
-      padding:10px;
-      font-size:12px;
     }
+
     .archive-media img{
       width:100%;
       height:100%;
+      min-height:126px;
       object-fit:cover;
       border-radius:10px;
       display:block;
     }
-    .archive-copy h4{margin:0;font-size:15px}
-    .archive-copy p{margin:8px 0 0;color:var(--muted);font-size:13px}
-    .archive-copy .btn{margin-top:10px}
 
+    .archive-copy h4{
+      margin:0;
+      font-size:15px;
+    }
+
+    .archive-copy p{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .archive-copy .btn{
+      margin-top:10px;
+      display:inline-block;
+    }
+
+    /* CSV */
     .csv-card{ padding:16px; }
+
     .csv-body{
       border:1px solid var(--line);
       border-radius:14px;
       padding:14px;
       background:rgba(255,255,255,.03);
     }
-    .csv-body h3{margin:0;font-size:20px}
-    .csv-body p{margin:10px 0 0;color:var(--muted)}
+
+    .csv-body h3{
+      margin:0;
+      font-size:20px;
+    }
+
+    .csv-body p{
+      margin:10px 0 0;
+      color:var(--muted);
+    }
+
     .csv-list{
       margin:10px 0 0;
       padding-left:20px;
       color:var(--muted);
     }
-    .csv-list li{margin:6px 0}
+
+    .csv-list li{
+      margin:6px 0;
+    }
+
     .csv-actions{
       margin-top:12px;
       display:flex;
@@ -428,13 +586,15 @@
       flex-wrap:wrap;
     }
 
-    /* 5) Contact / booking */
+    /* Contact */
     .contact-card{ padding:16px; }
+
     .contact-grid{
       display:grid;
       grid-template-columns:repeat(3, minmax(0, 1fr));
       gap:12px;
     }
+
     .contact-row{
       border:1px solid var(--line);
       border-radius:14px;
@@ -446,21 +606,29 @@
       gap:10px;
       justify-content:space-between;
     }
+
     .label{
       font-size:12px;
       color:var(--muted);
       text-transform:uppercase;
-      letter-spacing:0.08em;
+      letter-spacing:.08em;
     }
+
     .value{
       color:var(--muted);
       font-size:13px;
       line-height:1.45;
     }
+
     .value a{
       color:var(--accent);
       text-decoration:none;
       word-break:break-word;
+    }
+
+    .value a:hover{
+      color:var(--ink);
+      text-decoration:underline;
     }
 
     .footer-note{
@@ -470,22 +638,35 @@
       text-align:center;
     }
 
+    /* Responsive */
     @media (max-width: 920px){
       .main-grid{ grid-template-columns:1fr; }
       .leader-layout,
       .sb-layout{ grid-template-columns:1fr; }
       .archive-feature{ grid-template-columns:1fr; }
+
       .hero-grid{
         grid-template-columns:1fr;
       }
+
       .profile-circle{
         margin-top:-70px;
       }
+
       .hero-actions{
         justify-content:flex-start;
       }
-      .academic-grid{ grid-template-columns:1fr; }
+
+      .academic-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-head{
+        align-items:flex-start;
+        flex-direction:column;
+      }
     }
+
     @media (max-width: 1024px){
       .contact-grid{ grid-template-columns:1fr; }
     }
@@ -494,34 +675,48 @@
 <body>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <div class="brand">Dr. Kp - Personal Site (Wireframe)</div>
-      <nav class="nav">
+      <div class="brand">Dr. Krishnaprasad Nagaraj</div>
+      <nav class="nav" aria-label="Primary navigation">
         <a href="#leadership-feed">Leadership Feed</a>
         <a href="#academic">Academic</a>
         <a href="#skillbridge">Skill Bridge</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact">Connect</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
-
     <!-- 1) Banner + Profile -->
-    <section class="card hero section" id="top">
+    <section class="card hero section" id="top" aria-label="Hero">
       <div class="banner">
-        <img class="banner-img" src="./Krishna-Prasad-Nagaraj-Banner.png" alt="Krishna Prasad Nagaraj banner" />
-        
+        <img
+          class="banner-img"
+          src="./Krishna-Prasad-Nagaraj-Banner.png"
+          alt="Banner image for Dr. Krishnaprasad Nagaraj"
+          loading="eager"
+          decoding="async"
+        />
       </div>
+
       <div class="hero-body">
         <div class="hero-grid">
           <div class="profile-circle">
-            <img class="profile-img" src="./Krishna-Prasad-Nagaraj-Blue.png" alt="Profile photo of Dr. Krishnaprasad Nagaraj" />
+            <img
+              class="profile-img"
+              src="./Krishna-Prasad-Nagaraj-Blue.png"
+              alt="Profile photo of Dr. Krishnaprasad Nagaraj"
+              loading="eager"
+              decoding="async"
+            />
           </div>
 
           <div class="identity">
             <h1>Dr. Krishnaprasad Nagaraj</h1>
-            <p>Leadership Mentor - Author - Storyteller - Builder</p>
-            <p style="font-size:13px;">Short one-line intro goes here. (Example: Helping professionals grow through leadership, systems, and practical wisdom.)</p>
+            <p>Leadership Mentor • Author • Storyteller • Builder</p>
+            <p class="intro">
+              Helping professionals, founders, and emerging leaders grow through practical leadership
+              systems, self-awareness, and execution discipline.
+            </p>
           </div>
 
           <div class="hero-actions">
@@ -533,16 +728,14 @@
     </section>
 
     <div class="main-grid">
-
       <!-- LEFT COLUMN -->
       <div class="stack">
-
         <!-- 2) Leadership Feed -->
         <section class="card leader-card section" id="leadership-feed">
           <div class="section-head">
             <div>
               <h2>Leadership Feed</h2>
-              <p>Book - Newsletter - Podcast (clustered, not separate random links)</p>
+              <p>Book • Newsletter • Podcast</p>
             </div>
             <span class="pill"><span class="dot"></span> Core IP</span>
           </div>
@@ -551,40 +744,58 @@
             <div class="book-panel">
               <div class="book-top">
                 <div class="book-cover">
-                  <img src="./The-Leadership-Feed.png" alt="The Leadership Feed book cover" loading="lazy" />
+                  <img
+                    src="./The-Leadership-Feed.png"
+                    alt="The Leadership Feed book cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
+
                 <div class="book-meta">
                   <h3>The Leadership Feed</h3>
-                  <p>Short description of the book and why it matters.</p>
-                  <a class="book-link" href="https://amzn.in/d/0j5zxcHa" target="_blank" rel="noopener">Amazon Book Link</a>
+                  <p>
+                    A practical leadership guide designed to help emerging leaders develop clarity,
+                    self-awareness, and real-world leadership habits.
+                  </p>
+                  <a class="book-link" href="https://amzn.in/d/0j5zxcHa" target="_blank" rel="noopener">
+                    Buy on Amazon
+                  </a>
                 </div>
               </div>
+
               <div style="margin-top:12px;">
-                <div class="wire" style="min-height:72px;">Optional: 2-3 line quote / testimonial / "Why read this" block</div>
+                <div class="wire" style="min-height:72px;">
+                  Add a testimonial, book blurb, or “Why this book matters” snippet here.
+                </div>
               </div>
             </div>
 
             <div class="media-stack">
               <div class="mini-card">
                 <h4>LinkedIn Newsletter</h4>
-                <p>Featured entry point for long-form thought leadership content.</p>
+                <p>Long-form leadership reflections, frameworks, and practical insights.</p>
                 <div class="link-row">
-                  <a class="link-chip" href="https://www.linkedin.com/newsletters/the-leadership-feed-7261310052379033602/" target="_blank" rel="noopener">Open Newsletter</a>
+                  <a class="link-chip" href="https://www.linkedin.com/newsletters/the-leadership-feed-7261310052379033602/" target="_blank" rel="noopener">
+                    Open Newsletter
+                  </a>
                 </div>
               </div>
 
               <div class="mini-card">
                 <h4>Spotify Podcast</h4>
-                <p>Audio extension of the Leadership Feed brand and ideas.</p>
+                <p>Audio conversations and leadership ideas inspired by The Leadership Feed.</p>
                 <div class="link-row">
-                  <a class="link-chip" href="https://open.spotify.com/show/5O9v59OEOZ5kiv9I7K34Pb" target="_blank" rel="noopener">Open Podcast</a>
+                  <a class="link-chip" href="https://open.spotify.com/show/5O9v59OEOZ5kiv9I7K34Pb" target="_blank" rel="noopener">
+                    Open Podcast
+                  </a>
                 </div>
               </div>
 
               <div class="mini-card">
-                <h4>Future Add-on (Optional)</h4>
-                <p>Could be "Featured Episode", "Latest Newsletter", or "Reader Reviews".</p>
-                <div class="wire" style="min-height:54px;">Placeholder</div>
+                <h4>Featured Add-on</h4>
+                <p>Use this space for a featured episode, latest article, or reader review.</p>
+                <div class="wire" style="min-height:54px;">Placeholder module</div>
               </div>
             </div>
           </div>
@@ -604,35 +815,36 @@
             <div class="tile">
               <div>
                 <h4>Mentor @ Intellipaat</h4>
-                <p>Brief line on mentoring role, domains, and learner support.</p>
+                <p>Industry-led mentoring support for learners navigating practical career growth.</p>
               </div>
-              <a href="#" onclick="return false;">Add Intellipaat link -&gt;</a>
+              <a href="#" onclick="return false;">Add Intellipaat link -></a>
             </div>
 
             <div class="tile">
               <div>
                 <h4>Mentor @ ICRTD</h4>
-                <p>Brief line on mentoring/advisory/academic engagement.</p>
+                <p>Mentoring and academic engagement across leadership and professional development.</p>
               </div>
-              <a href="#" onclick="return false;">Add ICRTD link -&gt;</a>
+              <a href="#" onclick="return false;">Add ICRTD link -></a>
             </div>
 
             <div class="tile wide-tile">
               <div>
                 <h4>Research Paper</h4>
                 <p>
-                  "Influence of Developing Early Leadership Skills..." (You can replace this with your preferred landing link or PDF link).
+                  “Influence of Early Leadership Skills on Corporate Success” — add your preferred
+                  landing page, journal, or PDF link here.
                 </p>
               </div>
-              <a href="#" onclick="return false;">Add research paper link -&gt;</a>
+              <a href="#" onclick="return false;">Add research paper link -></a>
             </div>
 
             <div class="tile wide-tile">
               <div>
                 <h4>Google Scholar</h4>
-                <p>Link to your profile and citations/publications list.</p>
+                <p>Link your scholar profile for publications, citations, and research visibility.</p>
               </div>
-              <a href="#" onclick="return false;">Add Google Scholar link -&gt;</a>
+              <a href="#" onclick="return false;">Add Google Scholar link -></a>
             </div>
           </div>
         </section>
@@ -642,7 +854,7 @@
           <div class="section-head">
             <div>
               <h2>The Skill Bridge</h2>
-              <p>What I'm building, who it serves, and what it offers</p>
+              <p>Leadership learning, diagnostics, coaching, and capability building</p>
             </div>
             <span class="pill"><span class="dot"></span> Venture</span>
           </div>
@@ -651,12 +863,13 @@
             <div class="sb-block">
               <h4>What I'm Building</h4>
               <p>
-                Short narrative block about Skill Bridge: leadership learning, practical growth systems,
-                coaching, assessments, and capability building.
+                The Skill Bridge is a practical leadership and growth platform designed to help
+                professionals and founders build capabilities through structured learning, diagnostics,
+                mentoring, and execution-oriented frameworks.
               </p>
               <ul class="bullet-list">
-                <li>Leadership programs for professionals &amp; founders</li>
-                <li>Diagnostics / assessments</li>
+                <li>Leadership programs for professionals, managers, and founders</li>
+                <li>Diagnostics and psychometric-style assessments</li>
                 <li>Mentoring, coaching, and practical learning assets</li>
               </ul>
             </div>
@@ -669,30 +882,38 @@
                 <a class="link-chip" href="#" onclick="return false;">Courses</a>
                 <a class="link-chip" href="#" onclick="return false;">Consulting</a>
               </div>
-              <div style="margin-top:10px;" class="wire">Optional: screenshot / logo / product graphic placeholder</div>
+              <div style="margin-top:10px;" class="wire">
+                Optional: Skill Bridge logo, screenshot, or featured program visual
+              </div>
             </div>
           </div>
 
           <div class="archive-feature">
             <div class="archive-media">
-              <img src="./The-Leadership-Archive.png" alt="Leadership Archive Psychometric Test screenshot" loading="lazy" />
+              <img
+                src="./The-Leadership-Archive.png"
+                alt="Leadership Archive psychometric test screenshot"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
+
             <div class="archive-copy">
               <h4>Leadership Archive&trade; Psychometric Test</h4>
               <p>
                 A structured self-discovery assessment that helps professionals decode leadership
-                patterns, strengths, and growth priorities with practical next-step guidance.
+                patterns, strengths, blind spots, and growth priorities with practical next-step guidance.
               </p>
-              <a class="btn primary" href="https://theskillbridge.co.in/leadership_archive/" target="_blank" rel="noopener">Explore Leadership Archive</a>
+              <a class="btn primary" href="https://theskillbridge.co.in/leadership_archive/" target="_blank" rel="noopener">
+                Explore Leadership Archive
+              </a>
             </div>
           </div>
         </section>
-
       </div>
 
       <!-- RIGHT COLUMN -->
       <div class="stack">
-
         <!-- Center Stand View -->
         <section class="card csv-card section">
           <div class="section-head">
@@ -702,11 +923,12 @@
             </div>
             <span class="pill"><span class="dot"></span> Consulting</span>
           </div>
+
           <div class="csv-body">
             <h3>Founding Partner @ Center Stand View</h3>
             <p>
-              I partner with founders and leadership teams to build practical operating systems
-              across growth, revenue operations, customer success, and execution.
+              I partner with founders and leadership teams to build practical operating systems across
+              growth, revenue operations, customer success, and execution.
             </p>
             <ul class="csv-list">
               <li>Founder and leadership advisory</li>
@@ -745,7 +967,7 @@
               <div class="label">Email</div>
               <div class="value">
                 <a href="mailto:you@example.com">you@example.com</a>
-                <div style="margin-top:4px;">Best for inquiries on mentoring and consulting.</div>
+                <div style="margin-top:4px;">Best for mentoring, speaking, and consulting inquiries.</div>
               </div>
             </div>
 
@@ -756,14 +978,14 @@
                   calendly.com/yourname/30min
                 </a>
                 <div style="color:var(--muted); font-size:12px; margin-top:4px;">
-                  Sample Calendly link placeholder
+                  Replace with your live booking link
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Extra right-side module for future -->
+        <!-- Featured Note -->
         <section class="card section" style="padding:16px;">
           <div class="section-head" style="margin-bottom:8px;">
             <div>
@@ -772,15 +994,14 @@
             </div>
           </div>
           <div class="wire" style="min-height:160px;">
-            Future: testimonial / event invite / latest article / speaking inquiry
+            Future: testimonial • event invite • latest article • speaking inquiry
           </div>
         </section>
-
       </div>
     </div>
 
     <div class="footer-note">
-      Wireframe draft only - placeholders intentionally kept blank-ish for layout planning before visual design.
+      Wireframe draft (cleaned) — image paths aligned to your repo file names.
     </div>
   </main>
 </body>
